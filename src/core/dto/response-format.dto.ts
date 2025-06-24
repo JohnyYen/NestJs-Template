@@ -28,9 +28,9 @@ export class ResponseFormat<T> {
     required: false,
   })
   error?: {
-    code: number,
-    details: string,
-    timestamp: string
+    code: number;
+    details: string;
+    timestamp: string;
   };
 
   constructor(partial: Partial<ResponseFormat<T>>) {

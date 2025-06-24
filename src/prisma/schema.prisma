@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+/// Modelo base que heredarán otros modelos
+model BaseModel {
+    id        String   @id @default(uuid())
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+    isDeleted Boolean  @default(false) @map("is_deleted")
+    deletedAt DateTime? @map("deleted_at")
+}
+
+
+
+/// Modelo de roles de usuario
+model Role {
+    @@map("roles")
+    id       String  @id @default(uuid())
+    roleName String  @unique @map("role_name")
+    users    User[]
+}
+
+/// Modelo de Usuario
+model User {
+    @@map("users")
+    
+    username String  @unique
+    password String
+    email    String  @unique
+    roleId   String  @map("role_id")
+    role     Role    @relation(fields: [roleId], references: [id])
+
+    baseId   String  @map("base_id")
+    baseData Base    @relation(fields: [baseId], references: [id])
+}

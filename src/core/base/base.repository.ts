@@ -8,7 +8,7 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export abstract class PrismaBaseRepository<T> implements IBaseRepository<T> {
   protected abstract prismaDelegate: any;
-  
+
   constructor(protected readonly prisma: PrismaService) {}
 
   async findAll(options?: Prisma.SelectSubset<T, any>): Promise<T[]> {
@@ -41,10 +41,10 @@ export abstract class PrismaBaseRepository<T> implements IBaseRepository<T> {
   async softDelete(id: string): Promise<T> {
     return this.prismaDelegate.update({
       where: { id },
-      data: { 
+      data: {
         deletedAt: new Date(),
-        is_deleted: true
-       },
+        is_deleted: true,
+      },
     });
   }
 
@@ -57,7 +57,7 @@ export abstract class PrismaBaseRepository<T> implements IBaseRepository<T> {
   async restore(id: string): Promise<T> {
     return this.prismaDelegate.update({
       where: { id },
-      data: { deletedAt: null, is_deleted : false },
+      data: { deletedAt: null, is_deleted: false },
     });
   }
 

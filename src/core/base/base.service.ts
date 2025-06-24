@@ -11,7 +11,9 @@ import { IBaseRepository } from '../interfaces/repository.interface';
  * @template UpdateDto DTO for update operations
  */
 @Injectable()
-export abstract class BaseService<T, CreateDto, UpdateDto> implements IBaseService<T, CreateDto, UpdateDto> {
+export abstract class BaseService<T, CreateDto, UpdateDto>
+  implements IBaseService<T, CreateDto, UpdateDto>
+{
   /**
    * @param repository The repository instance for the entity
    */
@@ -35,7 +37,9 @@ export abstract class BaseService<T, CreateDto, UpdateDto> implements IBaseServi
   async findById(id: string): Promise<T> {
     const entity = await this.repository.findById(id);
     if (!entity) {
-      throw new NotFoundException(`${this.getEntityName()} with id ${id} not found`);
+      throw new NotFoundException(
+        `${this.getEntityName()} with id ${id} not found`,
+      );
     }
     return entity;
   }
@@ -49,7 +53,9 @@ export abstract class BaseService<T, CreateDto, UpdateDto> implements IBaseServi
   async findOne(options: any): Promise<T> {
     const entity = await this.repository.findOne(options);
     if (!entity) {
-      throw new NotFoundException(`${this.getEntityName()} not found with the provided criteria`);
+      throw new NotFoundException(
+        `${this.getEntityName()} not found with the provided criteria`,
+      );
     }
     return entity;
   }

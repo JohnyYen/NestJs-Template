@@ -21,11 +21,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const exceptionResponse = exception.getResponse();
-      message = 
+      message =
         typeof exceptionResponse === 'object'
           ? (exceptionResponse as any).message || exception.message
           : exception.message;
-      errorDetails = 
+      errorDetails =
         typeof exceptionResponse === 'object'
           ? (exceptionResponse as any).error || exception.name
           : exception.name;

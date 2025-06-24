@@ -1,5 +1,3 @@
-// src/core/base/base.controller.ts
-
 import {
   Controller,
   Get,

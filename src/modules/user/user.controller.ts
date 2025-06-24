@@ -1,6 +1,10 @@
-import { BaseController } from "src/core/base/base.controller";
-import { UserCreateDto } from "./dto/userCreate.dto";
-import { UserUpdateDto } from "./dto/userUpdate.dto";
-import { User } from "@prisma/client";
+import { BaseController } from 'src/core/base/base.controller';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from '@prisma/client';
 
-export class UserController extends BaseController<User, UserCreateDto, UserUpdateDto>{}
+export class UserController extends BaseController<
+  User,
+  CreateUserDto,
+  UpdateUserDto
+> {}

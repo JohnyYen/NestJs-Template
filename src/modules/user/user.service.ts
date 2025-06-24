@@ -1,11 +1,14 @@
-import { User } from "@prisma/client";
-import { BaseService } from "src/core/base/base.service";
-import { UserCreateDto } from "./dto/userCreate.dto";
-import { UserUpdateDto } from "./dto/userUpdate.dto";
+import { User } from '@prisma/client';
+import { BaseService } from 'src/core/base/base.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
-export class UserService extends BaseService<User, UserCreateDto, UserUpdateDto>{
-    protected getEntityName(): string {
-        return "User";
-    }
-
+export class UserService extends BaseService<
+  User,
+  CreateUserDto,
+  UpdateUserDto
+> {
+  protected getEntityName(): string {
+    return 'User';
+  }
 }

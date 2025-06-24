@@ -4,6 +4,6 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [AuthModule, SharedModule, UserModule]
+  imports: [AuthModule, SharedModule, UserModule],
 })
 export class ModulesModule {}
