@@ -3,40 +3,41 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
-
 /// Modelo base que heredarán otros modelos
 model BaseModel {
-    id        String   @id @default(uuid())
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
-    isDeleted Boolean  @default(false) @map("is_deleted")
-    deletedAt DateTime? @map("deleted_at")
+  id        String    @id @default(uuid()) @map("_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  isDeleted Boolean   @default(false) @map("is_deleted")
+  deletedAt DateTime? @map("deleted_at")
+  User      User[]
 }
-
-
 
 /// Modelo de roles de usuario
 model Role {
-    @@map("roles")
-    id       String  @id @default(uuid())
-    roleName String  @unique @map("role_name")
-    users    User[]
+  id       String @id @default(uuid()) @map("_id")
+  roleName String @unique @map("role_name")
+  users    User[]
+
+  @@map("roles")
 }
 
 /// Modelo de Usuario
 model User {
-    @@map("users")
-    
-    username String  @unique
-    password String
-    email    String  @unique
-    roleId   String  @map("role_id")
-    role     Role    @relation(fields: [roleId], references: [id])
 
-    baseId   String  @map("base_id")
-    baseData Base    @relation(fields: [baseId], references: [id])
+  id       String @id @default(uuid()) @map("_id")
+  username String @unique
+  password String
+  email    String @unique
+  roleId   String @map("role_id")
+  role     Role   @relation(fields: [roleId], references: [id])
+
+  baseId   String    @map("base_id")
+  baseData BaseModel @relation(fields: [baseId], references: [id])
+
+  @@map("users")
 }
