@@ -12,7 +12,7 @@ import authConfig from './config/auth.config';
 import { PrismaService } from './prisma/prisma.service';
 
 @Module({
-  imports: [],
+  imports: [ModulesModule],
   providers: [PrismaService],
   exports: [PrismaService], // Exportarlo si lo usas en otros módulos
 })

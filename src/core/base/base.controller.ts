@@ -14,8 +14,7 @@ import { IBaseController } from '../interfaces/controller.interface';
 import { ResponseFormat } from '../dto/response-format.dto';
 import { IBaseService } from '../interfaces/service.interface';
 
-@Controller()
-export abstract class BaseController<T, CreateDto, UpdateDto>
+export class BaseController<T, CreateDto, UpdateDto>
   implements IBaseController<T, CreateDto, UpdateDto>
 {
   constructor(

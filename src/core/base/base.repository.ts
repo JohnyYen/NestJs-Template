@@ -6,8 +6,8 @@ import { IBaseRepository } from '../interfaces/repository.interface';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
-export abstract class PrismaBaseRepository<T> implements IBaseRepository<T> {
-  protected abstract prismaDelegate: any;
+export class PrismaBaseRepository<T> implements IBaseRepository<T> {
+  protected prismaDelegate: any;
 
   constructor(protected readonly prisma: PrismaService) {}
 

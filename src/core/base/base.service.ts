@@ -10,8 +10,9 @@ import { IBaseRepository } from '../interfaces/repository.interface';
  * @template CreateDto DTO for create operations
  * @template UpdateDto DTO for update operations
  */
+
 @Injectable()
-export abstract class BaseService<T, CreateDto, UpdateDto>
+export class BaseService<T, CreateDto, UpdateDto>
   implements IBaseService<T, CreateDto, UpdateDto>
 {
   /**
@@ -122,5 +123,7 @@ export abstract class BaseService<T, CreateDto, UpdateDto>
    * Gets the entity name for error messages
    * @returns The entity name
    */
-  protected abstract getEntityName(): string;
+  protected getEntityName(): string {
+    return 'no imlemented'
+  }
 }
