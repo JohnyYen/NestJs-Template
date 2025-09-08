@@ -1,6 +1,6 @@
 export default () => ({
   swagger: {
-    title: 'API Documentation',
+    title: 'NestJS Template API Documentation',
     description: 'API documentation for NestJS Prisma Boilerplate',
     version: '1.0',
     path: 'api',
