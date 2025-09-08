@@ -5,14 +5,13 @@ import { ConfigModule } from './config/config.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { CoreModule } from './core/core.module';
 import { ModulesModule } from './modules/modules.module';
-import appConfig from './config/app.config';
-import databaseConfig from './config/database.config';
-import swaggerConfig from './config/swagger.config';
-import authConfig from './config/auth.config';
 import { PrismaService } from './prisma/prisma.service';
 
 @Module({
-  imports: [ModulesModule],
+  imports: [
+    ConfigModule, // Importar ConfigModule para que esté disponible globalmente
+    ModulesModule,
+  ],
   providers: [PrismaService],
   exports: [PrismaService], // Exportarlo si lo usas en otros módulos
 })
